@@ -1,15 +1,21 @@
 echo $(hostname) > /opt/spark/conf/slaves
 
+echo "Starting Kafka, please wait ..."
+
 ${KAFKA_HOME}/bin/zookeeper-server-start.sh -daemon ${KAFKA_HOME}/config/zookeeper.properties
 ${KAFKA_HOME}/bin/kafka-server-start.sh -daemon ${KAFKA_HOME}/config/server.properties
 
-${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test 2>&1 1>/dev/null
 
 JAR1=${HOME}/.ivy2/cache/com.yammer.metrics/metrics-core/jars/metrics-core-2.2.0.jar
 JAR2=${HOME}/.ivy2/cache/org.apache.kafka/kafka_2.10/jars/kafka_2.10-0.8.2.1.jar
 JAR3=${HOME}/.ivy2/cache/org.apache.spark/spark-streaming-kafka_2.10/jars/spark-streaming-kafka_2.10-1.6.1.jar
 
 python /opt/kafkaproducer.py &
+
+echo "Executing Spark Streaming application, please wait ..."
+
+sleep 20
 
 spark-submit                     \
   --class="Streaming"            \
