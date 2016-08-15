@@ -47,7 +47,7 @@ RUN chmod +x /usr/bin/launcher.sh                                               
     sed -i 's#^dataDir.*$#dataDir=/var/lib/zookeeper#' zookeeper.properties                     && \
     sed -i 's#^log.dirs.*$#log.dirs=/var/lib/kafka#' server.properties                          && \
     echo 'Installing sbt ...'                                                                   && \
-    export SBTV=0.13.8                                                                          && \
+    export SBTV=0.13.12                                                                         && \
     curl -sL http://dl.bintray.com/sbt/native-packages/sbt/${SBTV}/sbt-${SBTV}.tgz |               \
       gzip -d |                                                                                    \
       tar -x -C /usr/local                                                                      && \
