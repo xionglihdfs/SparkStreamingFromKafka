@@ -13,7 +13,7 @@ bash Anaconda.sh -b -p /opt/anaconda
 rm Anaconda.sh
 mv /opt/anaconda/bin/sqlite3 /opt/anaconda/bin/sqlite3.orig
 echo 'Installing pykafka ...'
-PATH=/opt/anaconda/bin:$PATH pip install pykafka kafka-python
+PATH=/opt/anaconda/bin:$PATH pip install pykafka
 echo 'Downloading JDK ...'
 wget --no-check-certificate --no-cookies                         \
      --header "Cookie: oraclelicense=accept-securebackup-cookie" \
