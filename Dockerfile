@@ -9,6 +9,6 @@ RUN chmod +x /usr/bin/install.sh && \
 ENV SPARK_HOME=/opt/spark                   \
     KAFKA_HOME=/opt/kafka                   \
     PYSPARK_PYTHON=/opt/anaconda/bin/python \
-    PATH=/opt/anaconda/bin:/usr/local/sbt/bin:/opt/spark/bin:$PATH
+    PATH=/opt/anaconda/bin:/opt/jdk/bin:/usr/local/sbt/bin:/opt/spark/bin:$PATH
 
 CMD ["/usr/bin/launcher.sh"]
