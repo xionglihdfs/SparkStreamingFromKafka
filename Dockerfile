@@ -2,9 +2,7 @@ FROM ubuntu:16.04
 
 COPY install.sh /usr/bin/install.sh
 
-RUN chmod +x /usr/bin/install.sh && \
-    bash install.sh              && \
-    echo 'Building container, this may take a while ...'
+RUN chmod +x /usr/bin/install.sh && bash install.sh
 
 ENV SPARK_HOME=/opt/spark                   \
     KAFKA_HOME=/opt/kafka                   \
