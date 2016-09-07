@@ -28,4 +28,4 @@ echo "Executing Spark Streaming application ..."
 spark-submit                     \
   --class="Streaming"            \
   --jars ${JAR1},${JAR2},${JAR3} \
-  /opt/SparkStreamingFromKafka/code/target/scala-2.10/streaming_2.10-1.0.jar
+  /opt/SparkStreamingFromKafka/code/target/scala-2.11/streaming_2.11-1.0.jar
