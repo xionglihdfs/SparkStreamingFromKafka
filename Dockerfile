@@ -9,4 +9,4 @@ ENV SPARK_HOME=/opt/spark                   \
     PYSPARK_PYTHON=/opt/anaconda/bin/python \
     PATH=/opt/anaconda/bin:/opt/jdk/bin:/usr/local/sbt/bin:/opt/spark/bin:$PATH
 
-CMD ["/usr/bin/launcher.sh"]
+CMD ["bash", "-c", "/usr/bin/launcher.sh"]
