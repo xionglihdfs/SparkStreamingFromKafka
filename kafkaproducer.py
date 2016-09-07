@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from kafka import KafkaProducer
 from time  import sleep
 
