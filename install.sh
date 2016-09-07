@@ -1,8 +1,8 @@
 export DEBIAN_FRONTEND=noninteractive
 localedef -i en_US -f UTF-8 en_US.UTF-8
 apt-get -qq update
-apt-get -qq install --no-install-recommends -y \
-  wget curl git vim jq mc ca-certificates \
+apt-get -qq install --no-install-recommends -y            \
+  wget curl git vim jq mc ca-certificates build-essential \
   librdkafka-dev libev-dev libsnappy-dev zlib1g-dev
 echo 'Downloading Anaconda ...'
 wget -qO /opt/Anaconda.sh \
