@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 
-from kafka import KafkaProducer
-from time  import sleep
+from time                 import sleep
+from pykafka              import KafkaClient as KC
+from pykafka.partitioners import hashing_partitioner
 
-producer = KafkaProducer()
+kafka_client = KC(hosts='localhost:9092')
+
+test_topic = kafka_client.topics['test']
+
+producer = test_topic.get_sync_producer(partitioner=hashing_partitioner)
 
 while True:
     sleep(20)
     for i in range(1,10):
-        producer                            \
-        .send( 'test',  str(i), key='aaa' ) \
-        .get()
+        producer.produce( str(i), partition_key='aaa' )
