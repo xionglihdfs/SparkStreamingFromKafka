@@ -68,6 +68,6 @@ cp kafkaproducer.py /usr/bin/
 chmod +x /usr/bin/kafkaproducer.py 
 cd /opt/SparkStreamingFromKafka/code
 echo 'Running sbt package ...'
-PATH=/usr/local/sbt/bin:$PATH sbt package
+PATH=/opt/jdk/bin:/usr/local/sbt/bin:$PATH sbt package
 echo 'Building container, this may take a while ...'
 
