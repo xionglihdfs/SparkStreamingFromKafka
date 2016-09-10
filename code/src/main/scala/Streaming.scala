@@ -25,7 +25,7 @@ object Streaming {
     }
 
     val sums = messages
-               .map( case (k,v) => ("Aggregated " + k, v.toInt ) )
+               .map( case (k,v) => ("Aggregated " + k, v.toInt) )
                .reduceByKeyAndWindow(_ + _, _ - _, Seconds(30), Seconds(5) )
 
     sums.print()
