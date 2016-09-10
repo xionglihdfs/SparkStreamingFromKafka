@@ -47,7 +47,7 @@ object Streaming {
           val kafka_producer = new KafkaProducer[String,(String, String)](kafka_producer_props)
           partitionOfRecords.foreach {
             case (k,v) => {
-              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v.toString))
+              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
               kafka_producer.send(analytics_record).get } } } } }
 
     analytics.print()
