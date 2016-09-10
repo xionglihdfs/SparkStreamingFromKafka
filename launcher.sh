@@ -9,7 +9,7 @@ echo "Waiting for Kafka to become fully operational ..."
 
 sleep 5
 
-echo "Creating a topic ..."
+echo "Creating topics ..."
 
 ${KAFKA_HOME}/bin/kafka-topics.sh --create                   \
                                   --zookeeper localhost:2181 \
