@@ -1,11 +1,9 @@
 echo $(hostname) > /opt/spark/conf/slaves
 
-echo "Starting Kafka, please wait ..."
+echo "Starting Kafka and Waiting for it to become fully operational, please wait ..."
 
 ${KAFKA_HOME}/bin/zookeeper-server-start.sh -daemon ${KAFKA_HOME}/config/zookeeper.properties
 ${KAFKA_HOME}/bin/kafka-server-start.sh -daemon ${KAFKA_HOME}/config/server.properties
-
-echo "Waiting for Kafka to become fully operational ..."
 
 sleep 10
 
