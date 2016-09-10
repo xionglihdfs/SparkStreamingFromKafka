@@ -34,9 +34,8 @@ object Streaming {
                                      , Set(RAW_DATA_TOPIC)
                                      )
 
-    messages.foreachRDD {
-      rdd => rdd.foreach { case (k,v) => println( ("Individual " + k, v) ) }
-    }
+//  messages.foreachRDD {
+//    rdd => rdd.foreach { case (k,v) => println( ("Individual " + k, v) ) } }
 
     val analytics = messages
                     .map { case (k,v) => ("Aggregated " + k, v.toInt) }
@@ -49,8 +48,7 @@ object Streaming {
           partitionOfRecords.foreach {
             case (k,v) => {
               val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, v.toString)
-              kafka_producer.send(analytics_record).get
-            } } } } }
+              kafka_producer.send(analytics_record).get } } } } }
 
     analytics.print()
 
