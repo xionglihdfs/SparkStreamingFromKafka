@@ -7,7 +7,7 @@ ${KAFKA_HOME}/bin/kafka-server-start.sh -daemon ${KAFKA_HOME}/config/server.prop
 
 echo "Waiting for Kafka to become fully operational ..."
 
-sleep 5
+sleep 10
 
 echo "Creating topics ..."
 
