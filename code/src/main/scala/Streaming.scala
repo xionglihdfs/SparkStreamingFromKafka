@@ -44,7 +44,7 @@ object Streaming {
     analytics.foreachRDD {
       rdd => rdd.foreachPartition {
         partitionOfRecords => {
-          val kafka_producer = new KafkaProducer[String, String](kafka_producer_props)
+          val kafka_producer = new KafkaProducer[String,(String, String)](kafka_producer_props)
           partitionOfRecords.foreach {
             case (k,v) => {
               val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v.toString))
