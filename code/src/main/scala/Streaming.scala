@@ -21,11 +21,11 @@ object Streaming {
                                      )
 
     messages.foreachRDD {
-      rdd => rdd.foreach { e => println( ("Individual " + e._1, e._2) ) }
+      rdd => rdd.foreach { case (k,v) => println( ("Individual " + k, v) ) }
     }
 
     val sums = messages
-               .map( s => ("Aggregated " + s._1, s._2.toInt ) )
+               .map( case (k,v) => ("Aggregated " + k, v.toInt ) )
                .reduceByKeyAndWindow(_ + _, _ - _, Seconds(30), Seconds(5) )
 
     sums.print()
