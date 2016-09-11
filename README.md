@@ -10,6 +10,7 @@ docker run --rm                                \
 docker exec -it sparkstreamingfromkafka bash
 ```
 ```
+cd /opt/kafka
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 \
                               --topic analytics          \
                               --from-beginning
