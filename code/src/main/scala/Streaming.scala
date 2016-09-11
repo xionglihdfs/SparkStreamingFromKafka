@@ -37,9 +37,22 @@ object Streaming {
 //  messages.foreachRDD {
 //    rdd => rdd.foreach { case (k,v) => println( ("Individual " + k, v) ) } }
 
-    val analytics = messages
-                    .map { case (k,v) => ("Aggregated " + k, v.toInt) }
+    val preprocessed = messages
+                       .map { case (k,v) => (k,v.toInt) }
+
+    val analytics = preprocessed
                     .reduceByKeyAndWindow(_ + _, _ - _, Seconds(30), Seconds(5) )
+                    .filter { case (k,v) => v != 0 }
+
+    val grouped_by_first_letter = preprocessed
+                                  .map { case (k,v) => (s"begin_with_${k(0)}",v) }
+                                  .reduceByKeyAndWindow(_ + _, _ - _, Seconds(30), Seconds(5) )
+                                  .filter { case (k,v) => v != 0 }
+
+    val grouped_by_length = preprocessed
+                            .map { case (k,v) => (s"have_length_${k.length}",v) }
+                            .reduceByKeyAndWindow(_ + _, _ - _, Seconds(30), Seconds(5) )
+                            .filter { case (k,v) => v != 0 }
 
     analytics.foreachRDD {
       rdd => rdd.foreachPartition {
