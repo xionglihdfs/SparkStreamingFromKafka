@@ -62,10 +62,12 @@ cd /opt
 echo 'Getting code from GitHub ...'
 git clone https://github.com/dserban/SparkStreamingFromKafka.git
 cd /opt/SparkStreamingFromKafka
+cp sparkstreaming.sh /usr/bin/
+chmod +x /usr/bin/sparkstreaming.sh
 cp launcher.sh /usr/bin/
-chmod +x /usr/bin/launcher.sh 
+chmod +x /usr/bin/launcher.sh
 cp kafkaproducer.py /usr/bin/
-chmod +x /usr/bin/kafkaproducer.py 
+chmod +x /usr/bin/kafkaproducer.py
 cd /opt/SparkStreamingFromKafka/code
 echo 'Running sbt package ...'
 PATH=/opt/jdk/bin:/usr/local/sbt/bin:$PATH sbt package
