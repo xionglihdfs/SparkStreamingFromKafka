@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.joda.time.DateTime
 import kafka.serializer.StringDecoder
 import org.apache.spark._
 import org.apache.spark.streaming._
@@ -57,10 +58,11 @@ object Streaming {
     analytics.foreachRDD {
       rdd => rdd.foreachPartition {
         partitionOfRecords => {
+          val tStampAsISO = ( new DateTime(System.currentTimeMillis) ).toDateTimeISO
           val kafka_producer = new KafkaProducer[String,String](kafka_producer_props)
           partitionOfRecords.foreach {
             case (k,v) => {
-              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
+              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (tStampAsISO,k,v).toString)
               kafka_producer.send(analytics_record).get } } } } }
 
     grouped_by_first_letter.foreachRDD {
@@ -69,8 +71,8 @@ object Streaming {
           val kafka_producer = new KafkaProducer[String,String](kafka_producer_props)
           partitionOfRecords.foreach {
             case (k,v) => {
-              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
-              kafka_producer.send(analytics_record).get } } } } }
+              val record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
+              kafka_producer.send(record).get } } } } }
 
     grouped_by_length.foreachRDD {
       rdd => rdd.foreachPartition {
@@ -78,8 +80,8 @@ object Streaming {
           val kafka_producer = new KafkaProducer[String,String](kafka_producer_props)
           partitionOfRecords.foreach {
             case (k,v) => {
-              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
-              kafka_producer.send(analytics_record).get } } } } }
+              val record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
+              kafka_producer.send(record).get } } } } }
 
     analytics.print()
 
