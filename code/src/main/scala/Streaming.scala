@@ -50,6 +50,24 @@ object Streaming {
               val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
               kafka_producer.send(analytics_record).get } } } } }
 
+    grouped_by_first_letter.foreachRDD {
+      rdd => rdd.foreachPartition {
+        partitionOfRecords => {
+          val kafka_producer = new KafkaProducer[String,String](kafka_producer_props)
+          partitionOfRecords.foreach {
+            case (k,v) => {
+              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
+              kafka_producer.send(analytics_record).get } } } } }
+
+    grouped_by_length.foreachRDD {
+      rdd => rdd.foreachPartition {
+        partitionOfRecords => {
+          val kafka_producer = new KafkaProducer[String,String](kafka_producer_props)
+          partitionOfRecords.foreach {
+            case (k,v) => {
+              val analytics_record = new ProducerRecord(STREAMING_ANALYTICS_TOPIC, k, (k,v).toString)
+              kafka_producer.send(analytics_record).get } } } } }
+
     analytics.print()
 
     ssc.start()
