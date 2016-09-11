@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+  body { padding: 30px; font-family: monospace; }
+  table tr td { vertical-align: top; }
+  button { font-size: 50px; border-radius: 45px; padding-top: 30px; padding-bottom: 30px; margin: 5px; }
+</style>
+</head>
+<body>
+<form action="/processinput" method="post">
+  <table>
+    <tr>
+      <td><button name="aaa">aaa</button></td>
+      <td><button name="aaaa">aaaa</button></td>
+      <td><button name="aaaaa">aaaaa</button></td>
+      <td><button name="aaaaaa">aaaaaa</button></td>
+    </tr>
+    <tr>
+      <td><button name="bbb">bbb</button></td>
+      <td><button name="bbbb">bbbb</button></td>
+      <td><button name="bbbbb">bbbbb</button></td>
+      <td><button name="bbbbbb">bbbbbb</button></td>
+    </tr>
+    <tr>
+      <td><button name="ccc">ccc</button></td>
+      <td><button name="cccc">cccc</button></td>
+      <td><button name="ccccc">ccccc</button></td>
+      <td><button name="cccccc">cccccc</button></td>
+    </tr>
+    <tr>
+      <td><button name="ddd">ddd</button></td>
+      <td><button name="dddd">dddd</button></td>
+      <td><button name="ddddd">ddddd</button></td>
+      <td><button name="dddddd">dddddd</button></td>
+    </tr>
+    <tr>
+      <td><button name="eee">eee</button></td>
+      <td><button name="eeee">eeee</button></td>
+      <td><button name="eeeee">eeeee</button></td>
+      <td><button name="eeeeee">eeeeee</button></td>
+    </tr>
+  <table>
+</form>
+<br>
+{% if button_pressed %}
+<h1>&nbsp;&nbsp;Your input was: {{ button_pressed }}</h1>
+{% endif %}
+</body>
+</html>
